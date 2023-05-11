@@ -7,5 +7,5 @@ import User from './user';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements User {
-  title = 'todoapp';
+ 
 }
