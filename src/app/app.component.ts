@@ -7,5 +7,8 @@ import User from './user';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements User {
- 
+  state: boolean = false;
+  onClick(event: any) {
+    console.dir(event.target.textContent);
+  }
 }

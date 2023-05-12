@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { NotesListComponent } from './notes-list/notes-list.component';
 import { NoteEditorComponent } from './note-editor/note-editor.component';
 import { NoteCardComponent } from './notes-list/note-card/note-card.component';
-
+import { MatCardModule } from '@angular/material/card';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +24,7 @@ import { NoteCardComponent } from './notes-list/note-card/note-card.component';
     MatButtonModule,
     MatInputModule,
     MatIconModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent],

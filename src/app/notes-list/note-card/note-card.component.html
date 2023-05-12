@@ -1,7 +1,9 @@
-<div class="card">
-  <p>
-    <b>{{ title }}</b>
-  </p>
-  <p>{{ date | date }}</p>
-  <p>{{ text }}</p>
-</div>
+<mat-card class="card">
+  <mat-card-title>
+    {{ title }}
+  </mat-card-title>
+  <mat-card-subtitle>
+    {{ date | date }}
+  </mat-card-subtitle>
+  <mat-card-content>Simple card</mat-card-content>
+</mat-card>
