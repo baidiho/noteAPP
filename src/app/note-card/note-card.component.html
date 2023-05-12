@@ -5,5 +5,5 @@
   <mat-card-subtitle>
     {{ note.date | date }}
   </mat-card-subtitle>
-  <mat-card-content>{{ note.text }}</mat-card-content>
+  <mat-card-content>{{ note.text | truncate }}</mat-card-content>
 </mat-card>

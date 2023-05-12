@@ -11,12 +11,14 @@ import { NoteEditorComponent } from './note-editor/note-editor.component';
 import { NoteCardComponent } from './note-card/note-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
+import { TruncatePipe } from './pipes/truncate.pipe';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     NoteEditorComponent,
     NoteCardComponent,
+    TruncatePipe,
   ],
   imports: [
     BrowserModule,
