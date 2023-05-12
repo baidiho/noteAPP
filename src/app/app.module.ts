@@ -6,15 +6,15 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { NotesListComponent } from './notes-list/notes-list.component';
+
 import { NoteEditorComponent } from './note-editor/note-editor.component';
-import { NoteCardComponent } from './notes-list/note-card/note-card.component';
+import { NoteCardComponent } from './note-card/note-card.component';
 import { MatCardModule } from '@angular/material/card';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    NotesListComponent,
     NoteEditorComponent,
     NoteCardComponent,
   ],
@@ -24,7 +24,8 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     MatInputModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

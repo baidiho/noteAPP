@@ -1,4 +1,9 @@
 <div>
-  <p>{{ date | date }}</p>
-  <textarea type="text" placeholder="Type your note here">{{text}}</textarea>
+  <p>{{ noteData.date | date }}</p>
+  <textarea
+    [(ngModel)]="service.notesDataArray[service.chosenElementIndex].text"
+    type="text"
+    placeholder="Type your note here"
+    >{{ noteData.text }}</textarea
+  >
 </div>

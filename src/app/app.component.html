@@ -4,8 +4,17 @@
   </div>
   <div class="notes-list-editor-wrapper">
     <div class="scrolable">
-      <app-notes-list (click)="onClick($event)"></app-notes-list>
+      <app-note-card
+        *ngFor="let notes of service.notesDataArray; index as i"
+        [note]="notes"
+        [i]="i"
+      >
+      </app-note-card>
     </div>
-    <app-note-editor *ngIf="state" [date]="'07/12/2023'"></app-note-editor>
+    <app-note-editor
+      *ngIf="service.isChosenNote"
+      [noteData]="service.notesDataArray[service.chosenElementIndex]"
+      
+    ></app-note-editor>
   </div>
 </div>
