@@ -1,6 +1,7 @@
 <div>
   <p>{{ noteData.date | date }}</p>
   <textarea
+    [disabled]="!service.isNoteChosen"
     [(ngModel)]="service.notesDataArray[service.chosenElementIndex].text"
     type="text"
     placeholder="Type your note here"

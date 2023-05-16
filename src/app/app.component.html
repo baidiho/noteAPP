@@ -12,9 +12,9 @@
       </app-note-card>
     </div>
     <app-note-editor
-      *ngIf="service.isChosenNote"
+      *ngIf="service.isNoteChosen"
       [noteData]="service.notesDataArray[service.chosenElementIndex]"
-      
     ></app-note-editor>
+    <!-- <button (click)="changeArray()"></button> -->
   </div>
 </div>
