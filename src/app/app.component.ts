@@ -25,7 +25,6 @@ export class AppComponent implements OnInit {
     console.dir();
   }
   buttonHandler(type: string) {
-    console.log(`I catch ${type} in root`);
     switch (type) {
       case 'add':
         /*Пересмотреть этот кусок кода*/

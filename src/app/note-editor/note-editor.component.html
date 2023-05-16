@@ -1,4 +1,5 @@
 <div>
+  <h1>{{ noteData.title }}</h1>
   <p>{{ noteData.date | date : "dd/MM/yyyy HH:mm" }}</p>
   <textarea
     [disabled]="!canEdit"

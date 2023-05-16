@@ -22,7 +22,7 @@ export class NotesCardDataService {
   chosenElementIndex: number;
   isNoteChosen: boolean = false;
   notesEditableModeOn: boolean = false;
-  constructor() {}
+
   pushToEditPanel(i: number) {
     this.notesEditableModeOn = false;
     this.chosenElementIndex = i;
