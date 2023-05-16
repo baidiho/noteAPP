@@ -13,6 +13,21 @@ export class NavbarComponent implements OnInit {
     let button = event.target.closest('button');
     if (!button) {
       return;
-    } else console.log(button);
+    }
+    switch (button.textContent) {
+      case 'add':
+        console.log('I am add button');
+        break;
+      case 'delete':
+        console.log('I am delete button');
+        break;
+      case 'edit_note':
+        console.log('I am edit button');
+        break;
+
+      default:
+        console.log('nothing');
+        break;
+    }
   }
 }
