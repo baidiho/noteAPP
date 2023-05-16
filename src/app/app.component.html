@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div class="navbar-wrap">
-    <app-navbar></app-navbar>
+    <app-navbar (buttonEventEmitter)="buttonHandler($event)"></app-navbar>
   </div>
   <div class="notes-list-editor-wrapper">
     <div class="scrolable">
@@ -10,11 +10,12 @@
         [i]="i"
       >
       </app-note-card>
+      <ng-template #dynamicCard></ng-template>
     </div>
     <app-note-editor
       *ngIf="service.isNoteChosen"
       [noteData]="service.notesDataArray[service.chosenElementIndex]"
+      [canEdit]="service.notesEditableModeOn"
     ></app-note-editor>
-    <!-- <button (click)="changeArray()"></button> -->
   </div>
 </div>

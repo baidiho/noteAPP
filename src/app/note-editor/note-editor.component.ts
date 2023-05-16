@@ -7,11 +7,11 @@ import { NotesCardDataService } from '../services/notes-card-data.service';
   templateUrl: './note-editor.component.html',
   styleUrls: ['./note-editor.component.scss'],
 })
-export class NoteEditorComponent implements OnInit {
+export class NoteEditorComponent {
   @Input() noteData: Note;
   @Input() i: Note;
+  @Input() canEdit: boolean;
 
+  text: string;
   constructor(public service: NotesCardDataService) {}
-
-  ngOnInit(): void {}
 }

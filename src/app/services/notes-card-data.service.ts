@@ -21,11 +21,11 @@ export class NotesCardDataService {
   ];
   chosenElementIndex: number;
   isNoteChosen: boolean = false;
+  notesEditableModeOn: boolean = false;
   constructor() {}
   pushToEditPanel(i: number) {
-    this.isNoteChosen = false;
+    this.notesEditableModeOn = false;
     this.chosenElementIndex = i;
     this.isNoteChosen = true;
   }
- 
 }
