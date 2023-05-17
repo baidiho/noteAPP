@@ -15,6 +15,5 @@ export class NavbarComponent {
       return;
     }
     this.buttonEventEmitter.emit(button.dataset['type']);
-   
-  }
+     }
 }

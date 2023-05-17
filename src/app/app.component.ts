@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 ViewContainerRef;
 import { NotesCardDataService } from './services/notes-card-data.service';
-import { NoteCardComponent } from './note-card/note-card.component';
+import { NoteCardComponent } from './note-list/note-card/note-card.component';
 
 @Component({
   selector: 'app-root',

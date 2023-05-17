@@ -1,22 +1,10 @@
-<div class="wrapper">
-  <div class="navbar-wrap">
-    <app-navbar (buttonEventEmitter)="buttonHandler($event)"></app-navbar>
-  </div>
-  <div class="notes-list-editor-wrapper">
-    <div class="scrolable">
-      <app-note-card
-        *ngFor="let notes of service.notesDataArray; index as i"
-        [note]="notes"
-        [i]="i"
-      >
-      </app-note-card>
-      <ng-template #dynamicCard></ng-template>
-    </div>
-    <app-note-editor
-      #inp
-      *ngIf="service.isNoteChosen"
-      [noteData]="service.notesDataArray[service.chosenElementIndex]"
-      [canEdit]="service.notesEditableModeOn"
-    ></app-note-editor>
-  </div>
+<app-navbar (buttonEventEmitter)="buttonHandler($event)"></app-navbar>
+<div class="notes-list-editor-wrapper">
+  <app-note-list [arrayOfNotes]="service.notesDataArray"></app-note-list>
+  <app-note-editor
+    #inp
+    *ngIf="service.isNoteChosen"
+    [noteData]="service.notesDataArray[service.chosenElementIndex]"
+    [canEdit]="service.notesEditableModeOn"
+  ></app-note-editor>
 </div>

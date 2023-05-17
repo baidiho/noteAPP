@@ -8,10 +8,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 
 import { NoteEditorComponent } from './note-editor/note-editor.component';
-import { NoteCardComponent } from './note-card/note-card.component';
+import { NoteCardComponent } from './note-list/note-card/note-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { NoteListComponent } from './note-list/note-list.component';
+import { NotesCardDataService } from './services/notes-card-data.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +21,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     NoteEditorComponent,
     NoteCardComponent,
     TruncatePipe,
+    NoteListComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,9 +30,9 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     MatInputModule,
     MatIconModule,
     MatCardModule,
-    FormsModule
+    FormsModule,
   ],
-  providers: [],
+  providers: [NotesCardDataService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import Note from '../Note';
 import { NotesCardDataService } from '../services/notes-card-data.service';
 
@@ -11,7 +11,7 @@ export class NoteEditorComponent {
   @Input() noteData: Note;
   @Input() i: Note;
   @Input() canEdit: boolean;
-
   text: string;
+
   constructor(public service: NotesCardDataService) {}
 }

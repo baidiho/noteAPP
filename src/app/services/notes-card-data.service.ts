@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import Note from '../Note';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class NotesCardDataService {
   notesDataArray: Array<Note> = [
     {
