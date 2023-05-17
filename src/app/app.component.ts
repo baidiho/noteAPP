@@ -39,10 +39,16 @@ export class AppComponent implements OnInit {
         this.service.notesDataArray.push(noteMockData);
         break;
       case 'delete':
-        this.service.notesDataArray.splice(this.service.chosenElementIndex, 1);
-        this.service.isNoteChosen = false;
+        if (this.service.isNoteChosen) {
+          this.service.notesDataArray.splice(
+            this.service.chosenElementIndex,
+            1
+          );
+          this.service.isNoteChosen = false;
+        }
+
         break;
-      case 'edit_note':
+      case 'edit':
         this.service.notesEditableModeOn = true;
         break;
 

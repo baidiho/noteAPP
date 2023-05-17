@@ -1,12 +1,12 @@
 <div class="navigation-element-wrapper">
   <div class="button-menu" (click)="onButtonClick($event)">
-    <button mat-flat-button color="primary" aria-label="Add new note button">
+    <button mat-flat-button color="primary" aria-label="Add new note button" data-type="add">
       <mat-icon>add</mat-icon>
     </button>
-    <button mat-flat-button color="warn" aria-label="Delete selected note">
+    <button mat-flat-button color="warn" aria-label="Delete selected note" data-type="delete">
       <mat-icon>delete</mat-icon>
     </button>
-    <button mat-flat-button color="accent" aria-label="Add new note button">
+    <button mat-flat-button color="accent" aria-label="Add new note button" data-type="edit">
       <mat-icon>edit_note</mat-icon>
     </button>
   </div>

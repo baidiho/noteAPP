@@ -14,6 +14,7 @@ export class NavbarComponent {
     if (!button) {
       return;
     }
-    this.buttonEventEmitter.emit(button.textContent);
+    this.buttonEventEmitter.emit(button.dataset['type']);
+   
   }
 }
