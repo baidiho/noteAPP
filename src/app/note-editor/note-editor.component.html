@@ -1,6 +1,6 @@
 <h1>{{ noteData.title }}</h1>
 <p>{{ noteData.date | date : "dd/MM/yyyy HH:mm" }}</p>
-<textarea
+<textarea #textarea
   [disabled]="!canEdit"
   type="text"
   [(ngModel)]="service.notesDataArray[service.chosenElementIndex].text"

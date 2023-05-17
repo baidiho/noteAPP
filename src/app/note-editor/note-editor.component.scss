@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 5px 0px;
 }
 p {
   margin-top: 5px;
@@ -15,8 +16,9 @@ textarea {
   width: 70vw;
   resize: none;
   border: none;
-  &:focus {
-    border: none;
-    outline: none;
-  }
+  background-color: white;
+  // &:focus {
+  //   border: none;
+  //   outline: none;
+  // }
 }

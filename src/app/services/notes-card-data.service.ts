@@ -26,4 +26,29 @@ export class NotesCardDataService {
     this.chosenElementIndex = i;
     this.isNoteChosen = true;
   }
+
+  navBarButtonHandler(type: string) {
+    switch (type) {
+      case 'add':
+        const noteMockData = {
+          title: 'New dynamic component title',
+          date: new Date().toString(),
+          text: 'I am new component that was created dynamically',
+        };
+        this.notesDataArray.push(noteMockData);
+        break;
+      case 'delete':
+        if (this.isNoteChosen && this.chosenElementIndex != null) {
+          this.notesDataArray.splice(this.chosenElementIndex, 1);
+          this.isNoteChosen = false;
+          this.chosenElementIndex = -1;
+        }
+        break;
+      case 'edit':
+        this.notesEditableModeOn = true;
+        break;
+      default:
+        break;
+    }
+  }
 }

@@ -1,4 +1,10 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  ViewChild,
+} from '@angular/core';
 import Note from '../Note';
 import { NotesCardDataService } from '../services/notes-card-data.service';
 
@@ -7,11 +13,20 @@ import { NotesCardDataService } from '../services/notes-card-data.service';
   templateUrl: './note-editor.component.html',
   styleUrls: ['./note-editor.component.scss'],
 })
-export class NoteEditorComponent {
+export class NoteEditorComponent implements OnChanges {
   @Input() noteData: Note;
   @Input() i: Note;
   @Input() canEdit: boolean;
-  text: string;
 
   constructor(public service: NotesCardDataService) {}
+  @ViewChild('textarea') textarea: ElementRef;
+  ngOnChanges(changes: any) {
+    if (!(changes.canEdit === undefined)) {
+      if (changes.canEdit.currentValue) {
+        setTimeout(() => {
+          this.textarea.nativeElement.focus();
+        }, 0);
+      }
+    }
+  }
 }

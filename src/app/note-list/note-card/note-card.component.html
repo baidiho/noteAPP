@@ -1,4 +1,8 @@
-<mat-card class="card" (click)="service.pushToEditPanel(i)">
+<mat-card
+  class="card"
+  [ngClass]="i == service.chosenElementIndex ? 'active' : ''"
+  (click)="service.pushToEditPanel(i)"
+>
   <mat-card-title>
     {{ note.title }}
   </mat-card-title>

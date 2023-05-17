@@ -1,4 +1,6 @@
-<app-navbar (buttonEventEmitter)="buttonHandler($event)"></app-navbar>
+<app-navbar
+  (buttonEventEmitter)="service.navBarButtonHandler($event)"
+></app-navbar>
 <div class="notes-list-editor-wrapper">
   <app-note-list [arrayOfNotes]="service.notesDataArray"></app-note-list>
   <app-note-editor
