@@ -1,0 +1,38 @@
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(75, 75, 75, 0.8);
+}
+
+.wrapper {
+  display: flex;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1001;
+  width: 20vw;
+  height: 20vh;
+  border: 2px solid black;
+  border-radius: 20px;
+}
+.actions-filed {
+  button:first-child {
+    margin-right: 5px;
+  }
+}
+.close-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1000;
+}
+

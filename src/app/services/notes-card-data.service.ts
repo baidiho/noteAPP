@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import Note from '../Note';
+import { ModalActions, Note } from '../Types';
 
 @Injectable()
 export class NotesCardDataService {
@@ -20,13 +20,14 @@ export class NotesCardDataService {
   chosenElementIndex: number;
   isNoteChosen: boolean = false;
   notesEditableModeOn: boolean = false;
-
+  modalOpen: boolean = false;
+  //Choose the
   pushToEditPanel(i: number) {
     this.notesEditableModeOn = false;
     this.chosenElementIndex = i;
     this.isNoteChosen = true;
   }
-
+  //Handle buttons from navigation panel (add, edit, delete)
   navBarButtonHandler(type: string) {
     switch (type) {
       case 'add':
@@ -36,6 +37,7 @@ export class NotesCardDataService {
           text: 'I am new component that was created dynamically',
         };
         this.notesDataArray.push(noteMockData);
+        this.openModalWindow();
         break;
       case 'delete':
         if (this.isNoteChosen && this.chosenElementIndex != null) {
@@ -51,4 +53,23 @@ export class NotesCardDataService {
         break;
     }
   }
+  openModalWindow() {
+    this.modalOpen = true;
+  }
+  closeModalWindow() {
+    this.modalOpen = false;
+  }
+  //Handle the action inside the modal window (submit or close window)
+  modalWindowAction(obj: ModalActions) {
+    if (obj.action == 'submit') {
+      //Add note to DB
+      this.closeModalWindow();
+      console.log(obj.noteTitle);
+    } else if (obj.action == 'close') {
+      this.closeModalWindow();
+    }
+  }
+  addNoteToDB() {}
+  editNoteInDB() {}
+  deleteNoteInDB() {}
 }

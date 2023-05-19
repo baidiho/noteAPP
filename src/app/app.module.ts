@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
+import { ModalComponent } from './modal/modal.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
-
 import { NoteEditorComponent } from './note-editor/note-editor.component';
 import { NoteCardComponent } from './note-list/note-card/note-card.component';
-import { MatCardModule } from '@angular/material/card';
-import { FormsModule } from '@angular/forms';
-import { TruncatePipe } from './pipes/truncate.pipe';
 import { NoteListComponent } from './note-list/note-list.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
 import { NotesCardDataService } from './services/notes-card-data.service';
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { NotesCardDataService } from './services/notes-card-data.service';
     NoteCardComponent,
     TruncatePipe,
     NoteListComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +33,8 @@ import { NotesCardDataService } from './services/notes-card-data.service';
     MatIconModule,
     MatCardModule,
     FormsModule,
+    MatDialogModule,
+    ReactiveFormsModule,
   ],
   providers: [NotesCardDataService],
   bootstrap: [AppComponent],

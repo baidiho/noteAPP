@@ -1,0 +1,22 @@
+<div class="close-overlay" (click)="closeWindow($event)" data-action="close">
+  <div class="wrapper">
+    <mat-form-field class="form">
+      <mat-label>Type your note's title</mat-label>
+      <input matInput [formControl]="newNoteTitle" (input)="onInput()" />
+    </mat-form-field>
+    <div class="actions-filed">
+      <button
+        [disabled]="!valid"
+        mat-flat-button
+        color="primary"
+        type="button"
+        (click)="onSubmit()"
+      >
+        Submit
+      </button>
+      <button mat-flat-button color="warn" type="button" data-action="close">
+        Close
+      </button>
+    </div>
+  </div>
+</div>

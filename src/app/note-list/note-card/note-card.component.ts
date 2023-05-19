@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import Note from 'src/app/Note';
+import { Note } from 'src/app/Types';
 import { NotesCardDataService } from '../../services/notes-card-data.service';
 
 @Component({

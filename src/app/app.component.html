@@ -10,3 +10,7 @@
     [canEdit]="service.notesEditableModeOn"
   ></app-note-editor>
 </div>
+<app-modal
+  *ngIf="service.modalOpen"
+  (modalWindowEmiter)="service.modalWindowAction($event)"
+></app-modal>

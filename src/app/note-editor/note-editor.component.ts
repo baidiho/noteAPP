@@ -5,7 +5,7 @@ import {
   OnChanges,
   ViewChild,
 } from '@angular/core';
-import Note from '../Note';
+import { Note } from '../Types';
 import { NotesCardDataService } from '../services/notes-card-data.service';
 
 @Component({
