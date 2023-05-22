@@ -1,6 +1,6 @@
 <mat-card
   class="card"
-  [ngClass]="i == service.chosenElementIndex ? 'active' : ''"
+  [ngClass]="i == service.chosenNoteIndex ? 'active' : ''"
   (click)="service.pushToEditPanel(i)"
 >
   <mat-card-title>

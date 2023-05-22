@@ -17,33 +17,27 @@ export class NotesCardDataService {
       text: 'This Tonya`s  date of birthday',
     },
   ];
-  chosenElementIndex: number;
+  chosenNoteIndex: number;
   isNoteChosen: boolean = false;
   notesEditableModeOn: boolean = false;
   modalOpen: boolean = false;
-  //Choose the
+  //Choose the to display
   pushToEditPanel(i: number) {
     this.notesEditableModeOn = false;
-    this.chosenElementIndex = i;
+    this.chosenNoteIndex = i;
     this.isNoteChosen = true;
   }
   //Handle buttons from navigation panel (add, edit, delete)
   navBarButtonHandler(type: string) {
     switch (type) {
       case 'add':
-        const noteMockData = {
-          title: 'New dynamic component title',
-          date: new Date().toString(),
-          text: 'I am new component that was created dynamically',
-        };
-        this.notesDataArray.push(noteMockData);
         this.openModalWindow();
         break;
       case 'delete':
-        if (this.isNoteChosen && this.chosenElementIndex != null) {
-          this.notesDataArray.splice(this.chosenElementIndex, 1);
+        if (this.isNoteChosen && this.chosenNoteIndex != null) {
+          this.notesDataArray.splice(this.chosenNoteIndex, 1);
           this.isNoteChosen = false;
-          this.chosenElementIndex = -1;
+          this.chosenNoteIndex = -1;
         }
         break;
       case 'edit':
@@ -62,7 +56,12 @@ export class NotesCardDataService {
   //Handle the action inside the modal window (submit or close window)
   modalWindowAction(obj: ModalActions) {
     if (obj.action == 'submit') {
-      //Add note to DB
+      const newNote: Note = {
+        title: obj.noteTitle,
+        date: new Date().toString(),
+        text: '',
+      };
+      this.notesDataArray.push(newNote);
       this.closeModalWindow();
       console.log(obj.noteTitle);
     } else if (obj.action == 'close') {

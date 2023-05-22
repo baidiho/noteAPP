@@ -6,7 +6,7 @@
   <app-note-editor
     #inp
     *ngIf="service.isNoteChosen"
-    [noteData]="service.notesDataArray[service.chosenElementIndex]"
+    [noteData]="service.notesDataArray[service.chosenNoteIndex]"
     [canEdit]="service.notesEditableModeOn"
   ></app-note-editor>
 </div>

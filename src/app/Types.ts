@@ -7,5 +7,5 @@ export interface Note {
 
 export interface ModalActions {
   action: string;
-  noteTitle?: string;
+  noteTitle: string;
 }
