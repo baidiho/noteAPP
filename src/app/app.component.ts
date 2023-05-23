@@ -1,4 +1,5 @@
 import { Component, ViewContainerRef } from '@angular/core';
+import { DataBaseService } from './services/data-base.service';
 import { NotesCardDataService } from './services/notes-card-data.service';
 ViewContainerRef;
 
@@ -7,6 +8,16 @@ ViewContainerRef;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  constructor(public service: NotesCardDataService) {}
+export class AppComponent  {
+  constructor(
+    public service: NotesCardDataService,
+    public IDB: DataBaseService
+  ) {}
+  
+  createDB() {
+    this.IDB.initDB();
+  }
+  deleteDB() {
+    this.IDB.deleteDB();
+  }
 }

@@ -1,8 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { ModalActions, Note } from '../Types';
 
 @Injectable()
-export class NotesCardDataService {
+export class NotesCardDataService implements OnInit {
+  ngOnInit(): void {
+    console.log('Service card init');
+  }
   notesDataArray: Array<Note> = [
     {
       id: 1,

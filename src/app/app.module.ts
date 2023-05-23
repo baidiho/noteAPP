@@ -14,6 +14,7 @@ import { NoteEditorComponent } from './note-editor/note-editor.component';
 import { NoteCardComponent } from './note-list/note-card/note-card.component';
 import { NoteListComponent } from './note-list/note-list.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { DataBaseService } from './services/data-base.service';
 import { NotesCardDataService } from './services/notes-card-data.service';
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { NotesCardDataService } from './services/notes-card-data.service';
     MatDialogModule,
     ReactiveFormsModule,
   ],
-  providers: [NotesCardDataService],
+  providers: [NotesCardDataService, DataBaseService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

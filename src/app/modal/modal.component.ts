@@ -1,6 +1,4 @@
 import {
-  AfterViewChecked,
-  AfterViewInit,
   Component,
   ElementRef,
   EventEmitter,
@@ -36,9 +34,11 @@ export class ModalComponent implements OnInit {
       noteTitle: this.newNoteTitle.value,
     });
   }
+
   onInput() {
     this.valid = this.newNoteTitle.valid;
   }
+
   closeWindow(event: Event) {
     const target = event.target as HTMLElement;
     if (
