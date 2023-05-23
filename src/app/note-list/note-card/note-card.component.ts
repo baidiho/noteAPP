@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Note } from 'src/app/Types';
-import { NotesCardDataService } from '../../services/notes-card-data.service';
+import { NotesCardDataService } from '../../services/user-action.service';
 
 @Component({
   selector: 'app-note-card',

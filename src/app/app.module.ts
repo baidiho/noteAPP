@@ -15,7 +15,7 @@ import { NoteCardComponent } from './note-list/note-card/note-card.component';
 import { NoteListComponent } from './note-list/note-list.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { DataBaseService } from './services/data-base.service';
-import { NotesCardDataService } from './services/notes-card-data.service';
+import { NotesCardDataService } from './services/user-action.service';
 @NgModule({
   declarations: [
     AppComponent,

@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { Note } from '../Types';
+import { DatabasesObject, Note } from '../Types';
 
 @Injectable()
 export class DataBaseService {
@@ -7,8 +7,49 @@ export class DataBaseService {
   deleteRequest: any;
   db: IDBDatabase;
   objectStore: IDBObjectStore;
-  constructor() {}
 
+  IDBinit() {
+    const openRequest: IDBOpenDBRequest = window.indexedDB.open('NotesDB', 1);
+
+    //........................................Check for errors........................................
+    openRequest.onerror = (err) => {
+      console.log('I am opening error and this is information about me', err);
+    };
+
+    //........................................Check if the DB already exist and create it........................................
+    openRequest.onupgradeneeded = (event: any) => {
+      console.log(event.target);
+      this.db = event.target.result;
+      if (!this.db.objectStoreNames.contains('NotesStore')) {
+        this.db.createObjectStore('NotesStore', {
+          keyPath: 'id',
+          autoIncrement: true,
+        });
+        console.log('Log inside upgradeneeded', this.db);
+      }
+    };
+
+    //........................................Write the db variable for further using........................................
+    openRequest.onsuccess = (event: any) => {
+      this.db = event.target.result;
+      console.log('Log inside success', this.db);
+      //........................................Read the data and fill the array for view........................................
+      this.getAllNotesFromDB();
+    };
+  }
+
+  getAllNotesFromDB() {
+    const transaction = this.db.transaction('NotesStore', 'readonly');
+    const objectStore = transaction.objectStore('NotesStore');
+    const request = objectStore.getAll();
+    request.onerror = (err) => {
+      console.log('Error while getting data from store', err);
+    };
+    request.onsuccess = (event: any) => {
+      console.log('Data successefully read');
+      return event.target.result;
+    };
+  }
   initDB() {
     const promise = indexedDB.databases();
     promise.then((databases) => {
@@ -56,14 +97,6 @@ export class DataBaseService {
     const objectS = transaction.objectStore('NotesStore');
     let request = objectS.add(element);
     request.onsuccess = () => {
-      console.log(request.result);
-    };
-  }
-  get() {
-    let transaction = this.db.transaction('NotesStore', 'readonly');
-    const objectS = transaction.objectStore('NotesStore');
-    const request = objectS.getAll();
-    request.onsuccess = (event: any) => {
       console.log(request.result);
     };
   }

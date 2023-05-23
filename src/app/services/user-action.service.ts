@@ -3,9 +3,7 @@ import { ModalActions, Note } from '../Types';
 
 @Injectable()
 export class NotesCardDataService implements OnInit {
-  ngOnInit(): void {
-    console.log('Service card init');
-  }
+  ngOnInit(): void {}
   notesDataArray: Array<Note> = [
     {
       id: 1,
@@ -24,13 +22,15 @@ export class NotesCardDataService implements OnInit {
   isNoteChosen: boolean = false;
   notesEditableModeOn: boolean = false;
   modalOpen: boolean = false;
-  //Choose the to display
+
+  //........................................View the chosen note........................................
   pushToEditPanel(i: number) {
     this.notesEditableModeOn = false;
     this.chosenNoteIndex = i;
     this.isNoteChosen = true;
   }
-  //Handle buttons from navigation panel (add, edit, delete)
+
+  //........................................Handle buttons from navigation panel (add, edit, delete)........................................
   navBarButtonHandler(type: string) {
     switch (type) {
       case 'add':
@@ -45,8 +45,6 @@ export class NotesCardDataService implements OnInit {
       case 'edit':
         this.notesEditableModeOn = true;
         break;
-      default:
-        break;
     }
   }
   openModalWindow() {
@@ -55,7 +53,8 @@ export class NotesCardDataService implements OnInit {
   closeModalWindow() {
     this.modalOpen = false;
   }
-  //Handle the action inside the modal window (submit or close window)
+
+  //........................................Handle the action from the modal window (submit or close window)........................................
   modalWindowAction(obj: ModalActions) {
     if (obj.action == 'submit') {
       const newNote: Note = {

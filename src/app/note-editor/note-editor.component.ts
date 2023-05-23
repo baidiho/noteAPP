@@ -6,7 +6,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Note } from '../Types';
-import { NotesCardDataService } from '../services/notes-card-data.service';
+import { NotesCardDataService } from '../services/user-action.service';
 
 @Component({
   selector: 'app-note-editor',
