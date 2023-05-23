@@ -1,4 +1,13 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -6,10 +15,17 @@ import { FormControl, Validators } from '@angular/forms';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],
 })
-export class ModalComponent {
+export class ModalComponent implements OnInit {
   @Output() modalWindowEmiter = new EventEmitter();
   valid: boolean = false;
   newNoteTitle = new FormControl('', Validators.required);
+
+  @ViewChild('input') input: ElementRef;
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.input.nativeElement.focus();
+    }, 0);
+  }
 
   onSubmit() {
     if (!this.newNoteTitle.valid) {
@@ -22,7 +38,6 @@ export class ModalComponent {
   }
   onInput() {
     this.valid = this.newNoteTitle.valid;
-    console.log(this.newNoteTitle.valid);
   }
   closeWindow(event: Event) {
     const target = event.target as HTMLElement;

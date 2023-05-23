@@ -34,10 +34,9 @@ export class NotesCardDataService {
         this.openModalWindow();
         break;
       case 'delete':
-        if (this.isNoteChosen && this.chosenNoteIndex != null) {
+        if (this.isNoteChosen) {
           this.notesDataArray.splice(this.chosenNoteIndex, 1);
           this.isNoteChosen = false;
-          this.chosenNoteIndex = -1;
         }
         break;
       case 'edit':
@@ -63,7 +62,6 @@ export class NotesCardDataService {
       };
       this.notesDataArray.push(newNote);
       this.closeModalWindow();
-      console.log(obj.noteTitle);
     } else if (obj.action == 'close') {
       this.closeModalWindow();
     }

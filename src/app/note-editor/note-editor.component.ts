@@ -21,12 +21,10 @@ export class NoteEditorComponent implements OnChanges {
   constructor(public service: NotesCardDataService) {}
   @ViewChild('textarea') textarea: ElementRef;
   ngOnChanges(changes: any) {
-    if (!(changes.canEdit === undefined)) {
-      if (changes.canEdit.currentValue) {
-        setTimeout(() => {
-          this.textarea.nativeElement.focus();
-        }, 0);
-      }
+    if (!(changes.canEdit === undefined) && changes.canEdit.currentValue) {
+      setTimeout(() => {
+        this.textarea.nativeElement.focus();
+      }, 0);
     }
   }
 }
