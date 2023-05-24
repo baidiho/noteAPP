@@ -6,7 +6,7 @@
   <app-note-editor
     #inp
     *ngIf="service.isNoteChosen"
-    [noteData]="service.notesDataArray[service.chosenNoteIndex]"
+    [noteData]="service.notesDataArray[service.chosenNoteId - 1]"
     [canEdit]="service.notesEditableModeOn"
   ></app-note-editor>
 </div>
@@ -16,6 +16,5 @@
 ></app-modal>
 
 <button (click)="deleteDB()">Delete</button>
-<button (click)="IDB.add()">Add</button>
 <button (click)="IDB.getAllNotesFromDB()">Get</button>
 <button (click)="IDB.IDBinit()">New button for test</button>

@@ -5,7 +5,7 @@ import {
   OnChanges,
   ViewChild,
 } from '@angular/core';
-import { Note } from '../Types';
+import { NoteFromDB } from '../Types';
 import { NotesCardDataService } from '../services/user-action.service';
 
 @Component({
@@ -14,8 +14,7 @@ import { NotesCardDataService } from '../services/user-action.service';
   styleUrls: ['./note-editor.component.scss'],
 })
 export class NoteEditorComponent implements OnChanges {
-  @Input() noteData: Note;
-  @Input() i: Note;
+  @Input() noteData: NoteFromDB;
   @Input() canEdit: boolean;
 
   constructor(public service: NotesCardDataService) {}

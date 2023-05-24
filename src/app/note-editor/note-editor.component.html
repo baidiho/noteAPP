@@ -4,7 +4,7 @@
   #textarea
   [disabled]="!canEdit"
   type="text"
-  [(ngModel)]="service.notesDataArray[service.chosenNoteIndex].text"
+  [(ngModel)]="service.notesDataArray[service.chosenNoteId - 1].text"
   >{{ noteData.text }}
   </textarea
 >

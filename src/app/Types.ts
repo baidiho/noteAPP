@@ -1,13 +1,12 @@
-export interface Note {
+export interface NoteToDB {
   title: string;
   date: string;
   text: string;
-  id?: number;
 }
-export interface NoteToDB extends Note {
-  
+export interface NoteFromDB extends NoteToDB {
+  id: number;
 }
-export type ArrayOfNote = Array<Note>;
+export type ArrayOfNote = Array<NoteFromDB>;
 export interface ModalActions {
   action: string;
   noteTitle: string;

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Note } from '../Types';
+import { NoteFromDB } from '../Types';
 
 @Component({
   selector: 'app-note-list',
@@ -7,6 +7,6 @@ import { Note } from '../Types';
   styleUrls: ['./note-list.component.scss'],
 })
 export class NoteListComponent {
-  @Input() arrayOfNotes: Array<Note>;
+  @Input() arrayOfNotes: Array<NoteFromDB>;
   constructor() {}
 }

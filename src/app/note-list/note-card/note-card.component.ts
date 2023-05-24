@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Note } from 'src/app/Types';
+import { NoteFromDB } from 'src/app/Types';
 import { NotesCardDataService } from '../../services/user-action.service';
 
 @Component({
@@ -8,8 +8,6 @@ import { NotesCardDataService } from '../../services/user-action.service';
   styleUrls: ['./note-card.component.scss'],
 })
 export class NoteCardComponent {
-  @Input() note: Note;
-  @Input() i: number;
-
+  @Input() note: NoteFromDB;
   constructor(public service: NotesCardDataService) {}
 }

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { ModalActions, Note } from '../Types';
+import { ModalActions, NoteFromDB, NoteToDB } from '../Types';
 import { DataBaseService } from './data-base.service';
 
 @Injectable()
 export class NotesCardDataService {
-  notesDataArray: Array<Note>;
-  chosenNoteIndex: number;
+  notesDataArray: Array<NoteFromDB>;
+  chosenNoteId: number;
   isNoteChosen: boolean = false;
   notesEditableModeOn: boolean = false;
   modalOpen: boolean = false;
@@ -18,9 +18,9 @@ export class NotesCardDataService {
     });
   }
   //........................................View the chosen note........................................
-  openEditor(i: number) {
+  openEditor(id: number) {
     this.notesEditableModeOn = false;
-    this.chosenNoteIndex = i;
+    this.chosenNoteId = id;
     this.isNoteChosen = true;
   }
 
@@ -32,7 +32,7 @@ export class NotesCardDataService {
         break;
       case 'delete':
         if (this.isNoteChosen) {
-          this.notesDataArray.splice(this.chosenNoteIndex, 1);
+          this.notesDataArray.splice(this.chosenNoteId, 1);
           this.isNoteChosen = false;
         }
         break;
@@ -51,12 +51,15 @@ export class NotesCardDataService {
   //........................................Handle the action from the modal window (submit or close window)........................................
   modalWindowAction(obj: ModalActions) {
     if (obj.action == 'submit') {
-      const newNote: Note = {
+      const newNote: NoteToDB = {
         title: obj.noteTitle,
         date: new Date().toString(),
         text: '',
       };
-      this.notesDataArray.push(newNote);
+      this.IDB.addNoteToDB(newNote).subscribe((value) => {
+        this.notesDataArray = value;
+      });
+
       this.closeModalWindow();
     } else if (obj.action == 'close') {
       this.closeModalWindow();
