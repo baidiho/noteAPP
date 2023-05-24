@@ -1,5 +1,6 @@
-import { Injectable, OnInit } from '@angular/core';
-import { DatabasesObject, Note } from '../Types';
+import { Injectable } from '@angular/core';
+import { Observable, pipe, take } from 'rxjs';
+import { ArrayOfNote, Note } from '../Types';
 
 @Injectable()
 export class DataBaseService {
@@ -8,84 +9,69 @@ export class DataBaseService {
   db: IDBDatabase;
   objectStore: IDBObjectStore;
 
+  /*
+   *First time ititialize the DB and immediately call getAllNotesFromDB() for rendering list of notes
+   */
+
   IDBinit() {
-    const openRequest: IDBOpenDBRequest = window.indexedDB.open('NotesDB', 1);
+    return new Observable<ArrayOfNote>((subscriber) => {
+      const openRequest: IDBOpenDBRequest = window.indexedDB.open('NotesDB', 1);
 
-    //........................................Check for errors........................................
-    openRequest.onerror = (err) => {
-      console.log('I am opening error and this is information about me', err);
-    };
-
-    //........................................Check if the DB already exist and create it........................................
-    openRequest.onupgradeneeded = (event: any) => {
-      console.log(event.target);
-      this.db = event.target.result;
-      if (!this.db.objectStoreNames.contains('NotesStore')) {
-        this.db.createObjectStore('NotesStore', {
-          keyPath: 'id',
-          autoIncrement: true,
-        });
-        console.log('Log inside upgradeneeded', this.db);
-      }
-    };
-
-    //........................................Write the db variable for further using........................................
-    openRequest.onsuccess = (event: any) => {
-      this.db = event.target.result;
-      console.log('Log inside success', this.db);
-      //........................................Read the data and fill the array for view........................................
-      this.getAllNotesFromDB();
-    };
-  }
-
-  getAllNotesFromDB() {
-    const transaction = this.db.transaction('NotesStore', 'readonly');
-    const objectStore = transaction.objectStore('NotesStore');
-    const request = objectStore.getAll();
-    request.onerror = (err) => {
-      console.log('Error while getting data from store', err);
-    };
-    request.onsuccess = (event: any) => {
-      console.log('Data successefully read');
-      return event.target.result;
-    };
-  }
-  initDB() {
-    const promise = indexedDB.databases();
-    promise.then((databases) => {
-      databases.forEach((db) => {
-        if (db.name == 'NotesDB') {
-          console.log('Already exist');
-          return;
-        }
-      });
-      this.request = window.indexedDB.open('NotesDB', 1);
-      this.request.onerror = (error: any) => {
-        console.log(error);
+      //........................................Check for errors........................................
+      openRequest.onerror = (err) => {
+        console.log('I am opening error and this is information about me', err);
       };
 
-      this.request.onupgradeneeded = () => {
-        this.db = this.request.result;
+      //........................................Check if the DB already exist and create it........................................
+      openRequest.onupgradeneeded = (event: any) => {
+        this.db = event.target.result;
         if (!this.db.objectStoreNames.contains('NotesStore')) {
           this.db.createObjectStore('NotesStore', {
             keyPath: 'id',
             autoIncrement: true,
-          }); // создаём хранилище
+          });
         }
-        console.log(this.db);
       };
-      this.request.onsuccess = (event: any) => {
+
+      //........................................Write the db variable for further using........................................
+      openRequest.onsuccess = (event: any) => {
         this.db = event.target.result;
-        console.log('Data base was created', this.db);
+
+        //........................................Read the data and fill the array for view........................................
+        const subs = this.getAllNotesFromDB().subscribe((x) =>
+          subscriber.next(x)
+        );
       };
-    });
+    }).pipe(take(1));
+  }
+
+  getAllNotesFromDB() {
+    return new Observable<ArrayOfNote>((subscriber) => {
+      //........................................CHeck for DB is already exist........................................
+      if (!this.db) {
+        console.log('There is no DB');
+        return;
+      }
+      const transaction = this.db.transaction('NotesStore', 'readonly');
+      const objectStore = transaction.objectStore('NotesStore');
+      const request = objectStore.getAll();
+
+      request.onsuccess = (event: any) => {
+        subscriber.next(event.target.result);
+      };
+      transaction.onerror = () => {
+        subscriber.error(console.log('Error while getting data transaction'));
+      };
+    }).pipe(take(1));
+  }
+  addNoteToDB(note: Note) {
+    const transaction = this.db.transaction('NotesStore', 'readonly');
+    const objectStore = transaction.objectStore('NotesStore');
+    const request = objectStore.put(note);
   }
   deleteDB() {
     this.deleteRequest = window.indexedDB.deleteDatabase('NotesDB');
-    this.deleteRequest.onsuccess = (event: any) => {
-      console.log('Database deleted successfully');
-      console.log(event.result); // should be undefined
-    };
+    this.deleteRequest.onsuccess = (event: any) => {};
   }
   add() {
     let transaction = this.db.transaction('NotesStore', 'readwrite');

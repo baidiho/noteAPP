@@ -4,7 +4,10 @@ export interface Note {
   text: string;
   id?: number;
 }
-
+export interface NoteToDB extends Note {
+  
+}
+export type ArrayOfNote = Array<Note>;
 export interface ModalActions {
   action: string;
   noteTitle: string;

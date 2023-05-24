@@ -1,30 +1,24 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ModalActions, Note } from '../Types';
+import { DataBaseService } from './data-base.service';
 
 @Injectable()
-export class NotesCardDataService implements OnInit {
-  ngOnInit(): void {}
-  notesDataArray: Array<Note> = [
-    {
-      id: 1,
-      title: 'First note title',
-      date: '01/21/1995',
-      text: 'This is my date of birthday',
-    },
-    {
-      id: 2,
-      title: 'Second note title',
-      date: '02/20/1986',
-      text: 'This Tonya`s  date of birthday',
-    },
-  ];
+export class NotesCardDataService {
+  notesDataArray: Array<Note>;
   chosenNoteIndex: number;
   isNoteChosen: boolean = false;
   notesEditableModeOn: boolean = false;
   modalOpen: boolean = false;
 
+  constructor(public IDB: DataBaseService) {}
+
+  onPageLoad() {
+    this.IDB.IDBinit().subscribe((value) => {
+      this.notesDataArray = value;
+    });
+  }
   //........................................View the chosen note........................................
-  pushToEditPanel(i: number) {
+  openEditor(i: number) {
     this.notesEditableModeOn = false;
     this.chosenNoteIndex = i;
     this.isNoteChosen = true;
@@ -68,7 +62,4 @@ export class NotesCardDataService implements OnInit {
       this.closeModalWindow();
     }
   }
-  addNoteToDB() {}
-  editNoteInDB() {}
-  deleteNoteInDB() {}
 }
