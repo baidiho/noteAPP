@@ -16,6 +16,7 @@ import { NoteListComponent } from './note-list/note-list.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { DataBaseService } from './services/data-base.service';
 import { NotesCardDataService } from './services/user-action.service';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +37,7 @@ import { NotesCardDataService } from './services/user-action.service';
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,
+    MatAutocompleteModule,
   ],
   providers: [NotesCardDataService, DataBaseService],
   bootstrap: [AppComponent],

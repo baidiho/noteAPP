@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { NoteFromDB } from '../Types';
 
 @Component({
   selector: 'app-navbar',
@@ -7,6 +9,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class NavbarComponent {
   @Output() buttonEventEmitter = new EventEmitter<any>();
+  @Output() searchEmmiter = new EventEmitter<string>();
+  @Input() arrayOfFiltered: Array<NoteFromDB>;
   constructor() {}
 
   onButtonClick(event: Event) {
@@ -15,5 +19,8 @@ export class NavbarComponent {
       return;
     }
     this.buttonEventEmitter.emit(button.dataset['buttonType']);
+  }
+  onInput(event: any) {
+    this.searchEmmiter.emit(event.target.value.toLowerCase());
   }
 }

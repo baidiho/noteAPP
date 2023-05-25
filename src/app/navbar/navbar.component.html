@@ -1,17 +1,54 @@
-  <div class="button-menu" (click)="onButtonClick($event)">
-    <button mat-flat-button color="primary" aria-label="Add new note button" data-button-type="add">
-      <mat-icon>add</mat-icon>
-    </button>
-    <button mat-flat-button color="warn" aria-label="Delete selected note" data-button-type="delete">
-      <mat-icon>delete</mat-icon>
-    </button>
-    <button mat-flat-button color="accent" aria-label="Add new note button" data-button-type="edit">
-      <mat-icon>edit_note</mat-icon>
-    </button>
-  </div>
+<div class="button-menu" (click)="onButtonClick($event)">
+  <button
+    mat-flat-button
+    color="primary"
+    aria-label="Add new note button"
+    data-button-type="add"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+  <button
+    mat-flat-button
+    color="warn"
+    aria-label="Delete selected note"
+    data-button-type="delete"
+  >
+    <mat-icon>delete</mat-icon>
+  </button>
+  <button
+    mat-flat-button
+    color="accent"
+    aria-label="Add new note button"
+    data-button-type="edit"
+  >
+    <mat-icon>edit_note</mat-icon>
+  </button>
+</div>
 
-  <div class="search-input">
-    <mat-icon matPrefix>search</mat-icon>
-    <input matInput type="search" placeholder="Search" />
-  </div>
+<form class="search-form">
+  <mat-form-field class="search-form-field">
+    <mat-label>Search</mat-label>
+    <input
+      (input)="onInput($event)"
+      type="text"
+      aria-label="Search"
+      matInput
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let option of arrayOfFiltered" [value]="option.title">
+        {{ option.title }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
 
+<!-- <div class="search-input">
+  <mat-icon matPrefix>search</mat-icon>
+  <input
+    (input)="onInput($event)"
+    matInput
+    type="search"
+    placeholder="Search"
+  />
+</div> -->

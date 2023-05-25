@@ -30,11 +30,8 @@ export class NoteEditorComponent implements OnChanges {
       }, 0);
     }
   }
+
   onInput(event: any) {
-    const object = {
-      title: this.noteData.title,
-      text: event.target.value,
-    };
-    this.inputEventEmiiter.emit(object);
+    this.inputEventEmiiter.emit(event.target.value);
   }
 }

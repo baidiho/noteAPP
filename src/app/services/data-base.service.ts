@@ -99,28 +99,31 @@ export class DataBaseService {
       request.onerror = () => subscriber.error('Error while deleting note');
     }).pipe(take(1));
   }
-  editNoteAtDB(obj: NoteToDB, id: number) {
+  editNoteAtDB(text: string, id: number) {
     return new Observable<ArrayOfNote>((subscriber) => {
-      const transaction = this.db.transaction('NotesStore', 'readwrite');
-      const objectStore = transaction.objectStore('NotesStore');
-      const request = objectStore.openCursor();
+      const request = this.db
+        .transaction('NotesStore', 'readwrite')
+        .objectStore('NotesStore')
+        .openCursor();
+
       request.onsuccess = () => {
         let cursor = request.result;
         if (cursor?.value.id == id) {
-          const data: NoteToDB = cursor.value;
-          data.text = obj.text;
+          const data: any = cursor.value;
+          data.text = text;
           data.date = new Date().toString();
-          data.title = data.title;
-          cursor?.update(data);
+          cursor.update(data);
           this.getAllNotesFromDB().subscribe((x) => {
             subscriber.next(x);
           });
+          return;
         }
 
         cursor?.continue();
       };
     }).pipe(take(1));
   }
+
   deleteDB() {
     this.deleteRequest = window.indexedDB.deleteDatabase('NotesDB');
     this.deleteRequest.onsuccess = (event: any) => {};

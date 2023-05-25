@@ -10,7 +10,7 @@ export class NotesCardDataService {
   isNoteChosen: boolean = false;
   notesEditableModeOn: boolean = false;
   modalOpen: boolean = false;
-
+  filteredArray: Array<any>;
   constructor(public IDB: DataBaseService) {}
 
   onPageLoad() {
@@ -56,6 +56,11 @@ export class NotesCardDataService {
   closeModalWindow() {
     this.modalOpen = false;
   }
+  searchHandler(event: string) {
+    this.filteredArray = this.notesDataArray.filter((obj) => {
+      return obj.title.toLowerCase().includes(event);
+    });
+  }
 
   //........................................Handle the action from the modal window (submit or close window)........................................
   modalWindowAction(obj: ModalActions) {
@@ -73,13 +78,8 @@ export class NotesCardDataService {
       this.closeModalWindow();
     }
   }
-  editingNote(obj: NoteToDB) {
-    const editNote: NoteToDB = {
-      title: obj.title,
-      date: new Date().toString(),
-      text: obj.text,
-    };
-    this.IDB.editNoteAtDB(obj, this.chosenNoteId).subscribe((value) => {
+  editingNote(title: string) {
+    this.IDB.editNoteAtDB(title, this.chosenNoteId).subscribe((value) => {
       this.notesDataArray = value;
     });
   }

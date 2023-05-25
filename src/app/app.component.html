@@ -1,5 +1,7 @@
 <app-navbar
   (buttonEventEmitter)="service.navBarButtonHandler($event)"
+  (searchEmmiter)="service.searchHandler($event)"
+  [arrayOfFiltered]="service.filteredArray"
 ></app-navbar>
 <div class="notes-list-editor-wrapper">
   <app-note-list [arrayOfNotes]="service.notesDataArray"></app-note-list>
@@ -17,5 +19,3 @@
 ></app-modal>
 
 <button (click)="deleteDB()">Delete</button>
-<button (click)="IDB.getAllNotesFromDB()">Get</button>
-<button (click)="IDB.IDBinit()">New button for test</button>
