@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, take } from 'rxjs';
-import { ArrayOfNote, NoteToDB } from '../Types';
+import { NoteToDB } from '../Types';
+import { ArrayOfNote } from './../Types';
 
 @Injectable()
 export class DataBaseService {
@@ -55,14 +56,15 @@ export class DataBaseService {
         console.log('There is no DB');
         return;
       }
-      const transaction = this.db.transaction('NotesStore', 'readonly');
-      const objectStore = transaction.objectStore('NotesStore');
-      const request = objectStore.getAll();
+      const request = this.db
+        .transaction('NotesStore', 'readonly')
+        .objectStore('NotesStore')
+        .getAll();
 
       request.onsuccess = (event: any) => {
         subscriber.next(event.target.result);
       };
-      transaction.onerror = () => {
+      request.onerror = () => {
         subscriber.error(console.log('Error while getting data transaction'));
       };
     }).pipe(take(1));
@@ -70,9 +72,11 @@ export class DataBaseService {
 
   addNoteToDB(note: NoteToDB) {
     return new Observable<ArrayOfNote>((subscriber) => {
-      const transaction = this.db.transaction('NotesStore', 'readwrite');
-      const objectStore = transaction.objectStore('NotesStore');
-      const request = objectStore.add(note);
+      const request = this.db
+        .transaction('NotesStore', 'readwrite')
+        .objectStore('NotesStore')
+        .add(note);
+
       request.onsuccess = () => {
         this.getAllNotesFromDB().subscribe((x) => {
           subscriber.next(x);
@@ -80,9 +84,42 @@ export class DataBaseService {
       };
     }).pipe(take(1));
   }
-  deleteNoteFromDB (id:number) {
-    return new Observable<ArrayOfNote>
 
+  deleteNoteFromDB(id: number) {
+    return new Observable<ArrayOfNote>((subscriber) => {
+      const request = this.db
+        .transaction('NotesStore', 'readwrite')
+        .objectStore('NotesStore')
+        .delete(id);
+      request.onsuccess = () => {
+        this.getAllNotesFromDB().subscribe((x) => {
+          subscriber.next(x);
+        });
+      };
+      request.onerror = () => subscriber.error('Error while deleting note');
+    }).pipe(take(1));
+  }
+  editNoteAtDB(obj: NoteToDB, id: number) {
+    return new Observable<ArrayOfNote>((subscriber) => {
+      const transaction = this.db.transaction('NotesStore', 'readwrite');
+      const objectStore = transaction.objectStore('NotesStore');
+      const request = objectStore.openCursor();
+      request.onsuccess = () => {
+        let cursor = request.result;
+        if (cursor?.value.id == id) {
+          const data: NoteToDB = cursor.value;
+          data.text = obj.text;
+          data.date = new Date().toString();
+          data.title = data.title;
+          cursor?.update(data);
+          this.getAllNotesFromDB().subscribe((x) => {
+            subscriber.next(x);
+          });
+        }
+
+        cursor?.continue();
+      };
+    }).pipe(take(1));
   }
   deleteDB() {
     this.deleteRequest = window.indexedDB.deleteDatabase('NotesDB');

@@ -1,7 +1,7 @@
 <mat-card
   class="card"
   [ngClass]="note.id == service.chosenNoteId ? 'active' : ''"
-  (click)="service.openEditor(note.id)"
+  (click)="service.openEditor(note.id, i)"
 >
   <mat-card-title>
     {{ note.title }}

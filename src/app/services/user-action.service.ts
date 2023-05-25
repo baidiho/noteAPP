@@ -6,6 +6,7 @@ import { DataBaseService } from './data-base.service';
 export class NotesCardDataService {
   notesDataArray: Array<NoteFromDB>;
   chosenNoteId: number;
+  chosenNoteIndex: number;
   isNoteChosen: boolean = false;
   notesEditableModeOn: boolean = false;
   modalOpen: boolean = false;
@@ -18,9 +19,10 @@ export class NotesCardDataService {
     });
   }
   //........................................View the chosen note........................................
-  openEditor(id: number) {
+  openEditor(id: number, i: number) {
     this.notesEditableModeOn = false;
     this.chosenNoteId = id;
+    this.chosenNoteIndex = i;
     this.isNoteChosen = true;
   }
 
@@ -32,7 +34,14 @@ export class NotesCardDataService {
         break;
       case 'delete':
         if (this.isNoteChosen) {
-          this.notesDataArray.splice(this.chosenNoteId, 1);
+          this.IDB.deleteNoteFromDB(this.chosenNoteId).subscribe({
+            next: (value) => {
+              this.notesDataArray = value;
+            },
+            error: (err) => {
+              console.log(err);
+            },
+          });
           this.isNoteChosen = false;
         }
         break;
@@ -59,10 +68,19 @@ export class NotesCardDataService {
       this.IDB.addNoteToDB(newNote).subscribe((value) => {
         this.notesDataArray = value;
       });
-
       this.closeModalWindow();
     } else if (obj.action == 'close') {
       this.closeModalWindow();
     }
+  }
+  editingNote(obj: NoteToDB) {
+    const editNote: NoteToDB = {
+      title: obj.title,
+      date: new Date().toString(),
+      text: obj.text,
+    };
+    this.IDB.editNoteAtDB(obj, this.chosenNoteId).subscribe((value) => {
+      this.notesDataArray = value;
+    });
   }
 }

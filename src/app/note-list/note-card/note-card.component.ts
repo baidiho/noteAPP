@@ -9,5 +9,6 @@ import { NotesCardDataService } from '../../services/user-action.service';
 })
 export class NoteCardComponent {
   @Input() note: NoteFromDB;
+  @Input() i: number;
   constructor(public service: NotesCardDataService) {}
 }
