@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { DataBaseService } from './services/data-base.service';
-import { NotesCardDataService } from './services/user-action.service';
+import { UserActionService } from './services/user-action.service';
 ViewContainerRef;
 
 @Component({
@@ -10,7 +10,7 @@ ViewContainerRef;
 })
 export class AppComponent implements OnInit {
   constructor(
-    public service: NotesCardDataService,
+    public service: UserActionService,
     public IDB: DataBaseService
   ) {}
   ngOnInit(): void {

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { NoteFromDB } from '../Types';
+import { UserActionService } from '../services/user-action.service';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-navbar',
@@ -9,10 +10,12 @@ import { NoteFromDB } from '../Types';
 })
 export class NavbarComponent {
   @Output() buttonEventEmitter = new EventEmitter<any>();
-  @Output() searchEmmiter = new EventEmitter<string>();
-  @Input() arrayOfFiltered: Array<NoteFromDB>;
-  constructor() {}
+  @Input() notesArray: Array<NoteFromDB>;
+  filteredArray: Array<any>;
 
+  constructor(public service: UserActionService) {}
+
+  //.............Buttons only emits the data-type. The outer service is responsible for handling button depending on their types.
   onButtonClick(event: Event) {
     const button = (event.target as HTMLElement).closest('button');
     if (!button) {
@@ -20,7 +23,25 @@ export class NavbarComponent {
     }
     this.buttonEventEmitter.emit(button.dataset['buttonType']);
   }
-  onInput(event: any) {
-    this.searchEmmiter.emit(event.target.value.toLowerCase());
+  //..............................................Search field..................................................
+
+  onSearchInputFilter(event: any) {
+    this.filteredArray = this.notesArray.filter((obj) => {
+      return obj.title.toLowerCase().includes(event.target.value.toLowerCase());
+    });
+  }
+  onSelected(event: MatAutocompleteSelectedEvent) {
+    let index: number | undefined;
+    //check the index of maim data array
+    for (let item of this.notesArray) {
+      if (item.title === event.option.value) {
+        index = this.notesArray.indexOf(item);
+        break;
+      }
+    }
+    if (index !== undefined) {
+      this.service.openEditor(this.notesArray[index].id, index);
+    }
+    return;
   }
 }

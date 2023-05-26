@@ -3,7 +3,7 @@ import { ModalActions, NoteFromDB, NoteToDB } from '../Types';
 import { DataBaseService } from './data-base.service';
 
 @Injectable()
-export class NotesCardDataService {
+export class UserActionService {
   notesDataArray: Array<NoteFromDB>;
   chosenNoteId: number;
   chosenNoteIndex: number;
@@ -19,10 +19,10 @@ export class NotesCardDataService {
     });
   }
   //........................................View the chosen note........................................
-  openEditor(id: number, i: number) {
+  openEditor(id: number, index: number) {
     this.notesEditableModeOn = false;
     this.chosenNoteId = id;
-    this.chosenNoteIndex = i;
+    this.chosenNoteIndex = index;
     this.isNoteChosen = true;
   }
 
@@ -55,11 +55,6 @@ export class NotesCardDataService {
   }
   closeModalWindow() {
     this.modalOpen = false;
-  }
-  searchHandler(event: string) {
-    this.filteredArray = this.notesDataArray.filter((obj) => {
-      return obj.title.toLowerCase().includes(event);
-    });
   }
 
   //........................................Handle the action from the modal window (submit or close window)........................................

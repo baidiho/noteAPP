@@ -1,7 +1,6 @@
 <app-navbar
   (buttonEventEmitter)="service.navBarButtonHandler($event)"
-  (searchEmmiter)="service.searchHandler($event)"
-  [arrayOfFiltered]="service.filteredArray"
+  [notesArray]="service.notesDataArray"
 ></app-navbar>
 <div class="notes-list-editor-wrapper">
   <app-note-list [arrayOfNotes]="service.notesDataArray"></app-note-list>

@@ -29,26 +29,24 @@
   <mat-form-field class="search-form-field">
     <mat-label>Search</mat-label>
     <input
-      (input)="onInput($event)"
+      (input)="onSearchInputFilter($event)"
       type="text"
       aria-label="Search"
       matInput
       [matAutocomplete]="auto"
     />
-    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <mat-option *ngFor="let option of arrayOfFiltered" [value]="option.title">
-        {{ option.title }}
+    <mat-autocomplete
+      autoActiveFirstOption
+      #auto="matAutocomplete"
+      (optionSelected)="onSelected($event)"
+    >
+      <mat-option
+        *ngFor="let note of filteredArray"
+        [value]="note.title"
+        aria-label="Notes title option"
+      >
+        {{ note.title }}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
 </form>
-
-<!-- <div class="search-input">
-  <mat-icon matPrefix>search</mat-icon>
-  <input
-    (input)="onInput($event)"
-    matInput
-    type="search"
-    placeholder="Search"
-  />
-</div> -->

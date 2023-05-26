@@ -9,7 +9,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { NoteFromDB } from '../Types';
-import { NotesCardDataService } from '../services/user-action.service';
+import { UserActionService } from '../services/user-action.service';
 
 @Component({
   selector: 'app-note-editor',
@@ -20,7 +20,7 @@ export class NoteEditorComponent implements OnChanges {
   @Input() noteData: NoteFromDB;
   @Input() canEdit: boolean;
   @Output() inputEventEmiiter = new EventEmitter();
-  constructor(public service: NotesCardDataService) {}
+  constructor(public service: UserActionService) {}
 
   @ViewChild('textarea') textarea: ElementRef;
   ngOnChanges(changes: any) {

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NoteFromDB } from 'src/app/Types';
-import { NotesCardDataService } from '../../services/user-action.service';
+import { UserActionService } from '../../services/user-action.service';
 
 @Component({
   selector: 'app-note-card',
@@ -10,5 +10,5 @@ import { NotesCardDataService } from '../../services/user-action.service';
 export class NoteCardComponent {
   @Input() note: NoteFromDB;
   @Input() i: number;
-  constructor(public service: NotesCardDataService) {}
+  constructor(public service: UserActionService) {}
 }
