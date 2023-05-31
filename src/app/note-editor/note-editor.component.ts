@@ -20,9 +20,9 @@ export class NoteEditorComponent implements OnChanges {
   @Input() noteData: NoteFromDB;
   @Input() canEdit: boolean;
   @Output() inputEventEmiiter = new EventEmitter();
+  @ViewChild('textarea') textarea: ElementRef;
   constructor(public service: UserActionService) {}
 
-  @ViewChild('textarea') textarea: ElementRef;
   ngOnChanges(changes: any) {
     if (!(changes.canEdit === undefined) && changes.canEdit.currentValue) {
       setTimeout(() => {

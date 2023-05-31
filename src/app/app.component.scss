@@ -1,7 +1,8 @@
+@import "../styles.scss";
 :host {
   width: 90vw;
   height: 90%;
-  border: 1px solid grey;
+  border: 1px solid $base-color-grey;
   box-shadow: 5px 5px 5px rgb(153, 153, 153), -5px 5px 5px rgb(153, 153, 153);
   display: flex;
   flex-direction: column;

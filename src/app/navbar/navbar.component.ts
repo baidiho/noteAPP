@@ -9,8 +9,10 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
-  @Output() buttonEventEmitter = new EventEmitter<any>();
+  /* In common this element  */
   @Input() notesArray: Array<NoteFromDB>;
+  @Output() buttonEventEmitter = new EventEmitter<any>();
+  @Output() searchEventEmitter = new EventEmitter<Array<number>>();
   filteredArray: Array<any>;
 
   constructor(public service: UserActionService) {}
@@ -30,6 +32,7 @@ export class NavbarComponent {
       return obj.title.toLowerCase().includes(event.target.value.toLowerCase());
     });
   }
+
   onSelected(event: MatAutocompleteSelectedEvent) {
     let index: number | undefined;
     //check the index of maim data array
@@ -40,7 +43,7 @@ export class NavbarComponent {
       }
     }
     if (index !== undefined) {
-      this.service.openEditor(this.notesArray[index].id, index);
+      this.searchEventEmitter.emit([this.notesArray[index].id, index]);
     }
     return;
   }

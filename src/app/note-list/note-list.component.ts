@@ -8,5 +8,4 @@ import { NoteFromDB } from '../Types';
 })
 export class NoteListComponent {
   @Input() arrayOfNotes: Array<NoteFromDB>;
-  constructor() {}
 }

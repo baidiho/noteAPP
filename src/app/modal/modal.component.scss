@@ -1,3 +1,4 @@
+@import "../../styles.scss";
 :host {
   position: fixed;
   top: 0;
@@ -16,7 +17,7 @@
   z-index: 1001;
   width: 20vw;
   height: 20vh;
-  border: 2px solid black;
+  border: 2px solid $base-color-grey;
   border-radius: 20px;
 }
 .actions-filed {
@@ -35,4 +36,3 @@
   width: 100%;
   z-index: 1000;
 }
-
