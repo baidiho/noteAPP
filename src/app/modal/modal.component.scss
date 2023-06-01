@@ -30,6 +30,7 @@
   border-radius: 20px;
 }
 .actions-field {
+  
   button:first-child {
     margin-right: 5px;
   }
@@ -39,4 +40,7 @@
   @include fixed;
   position: absolute;
   z-index: 1000;
+}
+mat-form-field {
+  width: 15vw;
 }
