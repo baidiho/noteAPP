@@ -1,5 +1,5 @@
 <app-note-card
-  *ngFor="let note of arrayOfNotes; index as i"
+  *ngFor="let note of arrayOfNotes; index as i; trackBy: identify"
   [note]="note"
   [i]="i"
 >
