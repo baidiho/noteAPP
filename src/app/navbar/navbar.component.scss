@@ -1,14 +1,20 @@
-@import "/src/styles.scss";
+@use "../../global-styles" as gs;
+
 :host {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid $base-color-grey;
+  border: 1px solid gs.$base-color-grey;
 }
 .button-menu {
   button {
     margin: 2px;
     transform: scale(80%);
   }
+}
+.search-form {
+  margin-right: 10px;
+  padding-top: 2px;
+  height: 50px;
 }

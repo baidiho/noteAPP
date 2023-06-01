@@ -39,12 +39,19 @@ export class ModalComponent implements OnInit {
     this.valid = this.newNoteTitle.valid;
   }
 
-  closeWindow(event: Event) {
-    const target = event.target as HTMLElement;
-    if (
-      target.dataset['action'] == 'close' ||
-      target.closest('button')?.dataset?.['action'] == 'close'
-    ) {
+  closeWindow(event: any) {
+    if (event.type == 'click') {
+      const target = event.target as HTMLElement;
+      if (
+        target.dataset['action'] == 'close' ||
+        target.closest('button')?.dataset?.['action'] == 'close'
+      ) {
+        this.modalWindowEmiter.emit({
+          action: 'close',
+        });
+      }
+    }
+    if (event.code == 'Escape') {
       this.modalWindowEmiter.emit({
         action: 'close',
       });

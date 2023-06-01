@@ -1,4 +1,4 @@
-@import "/src/styles.scss";
+@use "../../global-styles" as gs;
 :host {
   display: flex;
   flex-direction: column;
@@ -9,7 +9,7 @@
 p {
   margin-top: 5px;
   font-size: 16px;
-  color: $base-color-grey;
+  color: gs.$base-color-grey;
 }
 textarea {
   font-size: 20px;
@@ -21,7 +21,7 @@ textarea {
   padding: 10px;
   background-color: white;
   &:focus {
-    border: 1px solid $base-color-grey;
+    border: 1px solid gs.$base-color-grey;
     outline: none;
     background-color: rgb(185, 184, 184, 0.2);
   }

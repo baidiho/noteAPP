@@ -1,11 +1,13 @@
-@import "../styles.scss";
+@use "../global-styles" as gs;
+
 :host {
   width: 90vw;
   height: 90%;
-  border: 1px solid $base-color-grey;
+  border: 1px solid gs.$base-color-grey;
   box-shadow: 5px 5px 5px rgb(153, 153, 153), -5px 5px 5px rgb(153, 153, 153);
   display: flex;
   flex-direction: column;
+  border-radius: 0 0 5px 5px;
 }
 
 .notes-list-editor-wrapper {

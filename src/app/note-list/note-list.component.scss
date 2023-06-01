@@ -1,4 +1,4 @@
-@import "../../styles.scss";
+@use "../../global-styles" as gs;
 :host {
   overflow-y: scroll;
 
@@ -10,7 +10,7 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: $base-color-grey;
+    background-color: gs.$base-color-grey;
     border-radius: 5px;
     border: 1px solid rgb(224, 224, 224);
   }
