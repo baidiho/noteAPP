@@ -1,11 +1,7 @@
+@use "../../global-styles" as gs;
 :host {
   overflow-y: scroll;
 
-  scrollbar-color: #458245 #714826; /* «цвет ползунка» | «цвет полосы скроллбара» */
-  scrollbar-width: auto; /* толщина: auto | thin | none */
-
-  /*  Для Google Chrome, Яндекс.Браузер, Safari и Opera используйте следующие CSS свойства. */
-  /* полоса прокрутки (скроллбар) */
   &::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -13,9 +9,8 @@
     background-color: #d3d3d3;
   }
 
-  /* ползунок скроллбара */
   &::-webkit-scrollbar-thumb {
-    background-color: grey;
+    background-color: gs.$base-color-grey;
     border-radius: 5px;
     border: 1px solid rgb(224, 224, 224);
   }

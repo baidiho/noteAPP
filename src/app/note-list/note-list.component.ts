@@ -8,5 +8,7 @@ import { NoteFromDB } from '../Types';
 })
 export class NoteListComponent {
   @Input() arrayOfNotes: Array<NoteFromDB>;
-  constructor() {}
+  identify(index: number, item: NoteFromDB) {
+    return item.title;
+  }
 }

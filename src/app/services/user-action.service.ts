@@ -10,7 +10,7 @@ export class UserActionService {
   isNoteChosen: boolean = false;
   notesEditableModeOn: boolean = false;
   modalOpen: boolean = false;
-  filteredArray: Array<any>;
+
   constructor(public IDB: DataBaseService) {}
 
   onPageLoad() {
@@ -19,10 +19,11 @@ export class UserActionService {
     });
   }
   //........................................View the chosen note........................................
-  openEditor(id: number, index: number) {
+
+  openEditor(arr: Array<number>) {
     this.notesEditableModeOn = false;
-    this.chosenNoteId = id;
-    this.chosenNoteIndex = index;
+    this.chosenNoteId = arr[0];
+    this.chosenNoteIndex = arr[1];
     this.isNoteChosen = true;
   }
 

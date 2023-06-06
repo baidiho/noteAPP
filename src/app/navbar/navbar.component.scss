@@ -1,9 +1,11 @@
+@use "../../global-styles" as gs;
+
 :host {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid grey;
+  border-bottom: 1px solid gs.$base-color-grey;
 }
 .button-menu {
   button {
@@ -11,4 +13,7 @@
     transform: scale(80%);
   }
 }
-
+.search-form {
+  margin-right: 10px;
+  padding-top: 2px;
+}

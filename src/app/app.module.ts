@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -16,7 +17,6 @@ import { NoteListComponent } from './note-list/note-list.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { DataBaseService } from './services/data-base.service';
 import { UserActionService } from './services/user-action.service';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 @NgModule({
   declarations: [
     AppComponent,

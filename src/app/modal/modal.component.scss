@@ -1,38 +1,46 @@
-:host {
-  position: fixed;
+@use "../../global-styles" as gs;
+
+@mixin fixed {
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
+}
+
+@mixin flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+:host {
+  position: fixed;
+  @include fixed;
   background-color: rgba(75, 75, 75, 0.8);
 }
 
 .wrapper {
-  display: flex;
+  @include flex;
   background-color: white;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
   z-index: 1001;
   width: 20vw;
   height: 20vh;
-  border: 2px solid black;
+  border: 2px solid gs.$base-color-grey;
   border-radius: 20px;
 }
-.actions-filed {
+.actions-field {
+  
   button:first-child {
     margin-right: 5px;
   }
 }
 .close-overlay {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex;
+  @include fixed;
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
   z-index: 1000;
 }
-
+mat-form-field {
+  width: 15vw;
+}
