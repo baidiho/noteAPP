@@ -1,8 +1,6 @@
 @use "../global-styles" as gs;
 
 :host {
-  background-color: red;
-
   width: 90vw;
   height: 90%;
   border: 1px solid gs.$base-color-grey;
