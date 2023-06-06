@@ -1,14 +1,7 @@
 @use "../global-styles" as gs;
 
 :host {
-  background: linear-gradient(
-    to top,
-    #051937,
-    #004d7a,
-    #008793,
-    #00bf72,
-    #a8eb12
-  );
+  background-color: red;
 
   width: 90vw;
   height: 90%;
